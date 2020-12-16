@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+        <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+            <section name="TestForPath.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+        </sectionGroup>
+    </configSections>
+    <applicationSettings>
+        <TestForPath.Properties.Settings>
+            <setting name="PathToTest" serializeAs="String">
+                <value>\\application-s99\Lifecodatafiles\CS15Feed\prod</value>
+            </setting>
+            <setting name="PromptToEnd" serializeAs="String">
+                <value>True</value>
+            </setting>
+        </TestForPath.Properties.Settings>
+    </applicationSettings>
+</configuration>
