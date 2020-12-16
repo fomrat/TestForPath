@@ -7,22 +7,30 @@ namespace TestForPath
     {
         static void Main(string[] args)
         {   int success = 0;
+            try
+            {
+                foreach (string path in Properties.Settings.Default.TestPathsToTest)
+                {
+                    Console.WriteLine("Testing: {0}", path);
+                    Console.WriteLine();
 
-            foreach (string path in Properties.Settings.Default.PathsToTest) 
-            { 
-                Console.WriteLine("Testing: {0}", path);
-                Console.WriteLine();
-
-                if (Directory.Exists(path))
-                { DoDirectory(path); }
-                else if (File.Exists(path))
-                { DoFile(path); }
-                else
-                {   success = 1;
-                    Console.WriteLine("{0} is neither file nor folder.", path);
+                    if (Directory.Exists(path)) 
+                    { DoDirectory(path); }
+                    else if (File.Exists(path))
+                    { DoFile(path); }
+                    else
+                    {
+                        success = 1;
+                        Console.WriteLine("{0} is neither file nor folder.", path);
+                    }
                 }
-           }
-            if (Properties.Settings.Default.PromptToEnd)
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unexpected exception: {0}", e.Message);
+            }
+
+            if (Properties.Settings.Default.PromptToEnd)    
             {   Console.WriteLine();
                 Console.WriteLine("Press Enter to end.");
                 Console.ReadLine();
@@ -32,9 +40,17 @@ namespace TestForPath
 
         // RecurseesruceR
         static void DoDirectory(string directory)
-        {   Console.WriteLine("Folder '{0}'.", directory);
+        {
+            string[] files=null;
+            Console.WriteLine("Folder '{0}'.", directory);
 
-            string[] files = Directory.GetFiles(directory);
+            try { files = Directory.GetFiles(directory); }
+            catch (UnauthorizedAccessException unauthorizedAccessException)
+            {
+                Console.WriteLine(unauthorizedAccessException.Message);
+                return;
+            }
+
             foreach (string file in files) DoFile(file);
 
             string[] subdirs = Directory.GetDirectories(directory);
