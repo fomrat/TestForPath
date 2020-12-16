@@ -9,7 +9,7 @@ namespace TestForPath
         {   int success = 0;
             try
             {
-                foreach (string path in Properties.Settings.Default.TestPathsToTest)
+                foreach (string path in Properties.Settings.Default.PathsToTest)
                 {
                     Console.WriteLine("Testing: {0}", path);
                     Console.WriteLine();
@@ -45,7 +45,7 @@ namespace TestForPath
             Console.WriteLine("Folder '{0}'.", directory);
 
             try { files = Directory.GetFiles(directory); }
-            catch (UnauthorizedAccessException unauthorizedAccessException)
+            catch (Exception unauthorizedAccessException)
             {
                 Console.WriteLine(unauthorizedAccessException.Message);
                 return;

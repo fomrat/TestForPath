@@ -25,17 +25,6 @@ namespace TestForPath.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
-            "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
-            "tring>c:\\Users</string>\r\n</ArrayOfString>")]
-        public global::System.Collections.Specialized.StringCollection TestPathsToTest {
-            get {
-                return ((global::System.Collections.Specialized.StringCollection)(this["TestPathsToTest"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool PromptToEnd {
             get {
@@ -45,18 +34,9 @@ namespace TestForPath.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\\\\application-s3\\Lifecodatafiles\\CS15Feed\\prod")]
-        public string AnotherPath {
-            get {
-                return ((string)(this["AnotherPath"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("<?xml version=\"1.0\" encoding=\"utf-16\"?>\r\n<ArrayOfString xmlns:xsi=\"http://www.w3." +
             "org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <s" +
-            "tring>\\\\application-s3\\Lifecodatafiles\\CS15Feed\\prod</string>\r\n</ArrayOfString>")]
+            "tring>c:\\</string>\r\n</ArrayOfString>")]
         public global::System.Collections.Specialized.StringCollection PathsToTest {
             get {
                 return ((global::System.Collections.Specialized.StringCollection)(this["PathsToTest"]));
