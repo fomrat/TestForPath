@@ -1,0 +1,65 @@
+﻿using System;
+using System.IO;
+
+namespace TestForPath
+{
+    static class Program
+    {
+        static void Main(string[] args)
+        {   int success = 0;
+            try
+            {
+                foreach (string path in Properties.Settings.Default.PathsToTest)
+                {
+                    Console.WriteLine("{0}: Testing: {1}", DateTime.Now.ToString(), path);
+
+                    if (Directory.Exists(path)) 
+                    { DoDirectory(path); }
+                    else if (File.Exists(path))
+                    { DoFile(path); }
+                    else
+                    {
+                        // We want to return success if the initial path is valid; not usre this will work.
+                        success = 1;
+                        Console.WriteLine("{0} is neither file nor folder.", path);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unexpected exception: {0}", e.Message);
+            }
+
+            if (Properties.Settings.Default.PromptToEnd)    
+            {   Console.WriteLine("{0}: Press Enter to end.", DateTime.Now.ToString());
+                Console.ReadLine();
+            }
+            Environment.ExitCode = success; 
+       }
+
+        // RecurseesruceR
+        static void DoDirectory(string directory)
+        {
+            string[] files=null;
+            if (!Properties.Settings.Default.NoPathOutput) { Console.WriteLine("Folder '{0}'.", directory); }
+
+            try { files = Directory.GetFiles(directory); }
+            // todo: temporarily grabbing all exceptions here...
+            catch (Exception unauthorizedAccessException)
+            {
+                if (!Properties.Settings.Default.NoExceptionOuput) { Console.WriteLine(unauthorizedAccessException.Message); }
+                return;
+            }
+
+            foreach (string file in files) DoFile(file);
+
+            string[] subdirs = Directory.GetDirectories(directory);
+            foreach (string subdir in subdirs) DoDirectory(subdir);
+        }
+
+        static void DoFile(string file)
+        { 
+            if (!Properties.Settings.Default.NoPathOutput) { Console.WriteLine("\tFile '{0}'.", file); }
+        }
+    }
+}

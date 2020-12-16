@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+    <configSections>
+        <sectionGroup name="applicationSettings" type="System.Configuration.ApplicationSettingsGroup, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" >
+            <section name="TestForPath.Properties.Settings" type="System.Configuration.ClientSettingsSection, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" requirePermission="false" />
+        </sectionGroup>
+    </configSections>
+    <applicationSettings>
+        <TestForPath.Properties.Settings>
+            <setting name="PromptToEnd" serializeAs="String">
+                <value>True</value>
+            </setting>
+            <setting name="PathsToTest" serializeAs="Xml">
+                <value>
+                    <ArrayOfString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                        xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+                        <string>c:\</string>
+                    </ArrayOfString>
+                </value>
+            </setting>
+            <setting name="NoPathOutput" serializeAs="String">
+                <value>True</value>
+            </setting>
+            <setting name="NoExceptionOuput" serializeAs="String">
+                <value>False</value>
+            </setting>
+        </TestForPath.Properties.Settings>
+    </applicationSettings>
+</configuration>
