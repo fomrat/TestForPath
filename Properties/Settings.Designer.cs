@@ -42,5 +42,23 @@ namespace TestForPath.Properties {
                 return ((global::System.Collections.Specialized.StringCollection)(this["PathsToTest"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool NoPathOutput {
+            get {
+                return ((bool)(this["NoPathOutput"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool NoExceptionOuput {
+            get {
+                return ((bool)(this["NoExceptionOuput"]));
+            }
+        }
     }
 }

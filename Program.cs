@@ -11,8 +11,9 @@ namespace TestForPath
             {
                 foreach (string path in Properties.Settings.Default.PathsToTest)
                 {
-                    Console.WriteLine("Testing: {0}", path);
-                    Console.WriteLine();
+                    // U2U1104: Do not use composite formatting to concatenate strings
+                    // Composite formatting is very powerful, but using it to concatenate strings is not only overkill, it is highly inefficient.
+                    Console.WriteLine(DateTime.Now.ToString() + ": Testing: " + path);
 
                     if (Directory.Exists(path)) 
                     { DoDirectory(path); }
@@ -20,34 +21,35 @@ namespace TestForPath
                     { DoFile(path); }
                     else
                     {
+                        // We want to return success if the initial path is valid; not usre this will work.
                         success = 1;
-                        Console.WriteLine("{0} is neither file nor folder.", path);
+                        Console.WriteLine(path + " is neither file nor folder.");
                     }
                 }
             }
             catch (Exception e)
             {
-                Console.WriteLine("Unexpected exception: {0}", e.Message);
+                Console.WriteLine("Unexpected exception: " + e.Message);
             }
 
             if (Properties.Settings.Default.PromptToEnd)    
-            {   Console.WriteLine();
-                Console.WriteLine("Press Enter to end.");
+            {   Console.WriteLine(DateTime.Now.ToString() + ": Press Enter to end.");
                 Console.ReadLine();
             }
             Environment.ExitCode = success; 
        }
-
+        // Could not find a part of the path 'c:\Program Files\WindowsApps\25841LowtechStudios.io.Slither.io_15.9.0.0_x64__3bf2w4xg630q0'.
+        // "invisible" WindowsApp folder?
         // RecurseesruceR
         static void DoDirectory(string directory)
         {
             string[] files=null;
-            Console.WriteLine("Folder '{0}'.", directory);
-
+            if (!Properties.Settings.Default.NoPathOutput) { Console.WriteLine("Folder: " + directory); }
             try { files = Directory.GetFiles(directory); }
+            // todo: temporarily grabbing all exceptions here...
             catch (Exception unauthorizedAccessException)
             {
-                Console.WriteLine(unauthorizedAccessException.Message);
+                if (!Properties.Settings.Default.NoExceptionOuput) { Console.WriteLine(unauthorizedAccessException.Message); }
                 return;
             }
 
@@ -58,6 +60,8 @@ namespace TestForPath
         }
 
         static void DoFile(string file)
-        { Console.WriteLine("\tFile '{0}'.", file); }
+        { 
+            if (!Properties.Settings.Default.NoPathOutput) { Console.WriteLine("\tFile " + file); }
+        }
     }
 }
